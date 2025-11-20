@@ -6,13 +6,11 @@ import sys
 from PIL import Image, ImageTk 
 
 # --- Dosyaları Import Etme ---
-
 try:
     from ulkeler import ULKE_ARALIKLARI
     from sorular import TUM_SORULAR
 except ImportError as e:
     print(f"Hata: Gerekli dosya bulunamadı. Lütfen ulkeler.py ve sorular.py dosyalarının bu klasörde olduğundan emin olun. Hata: {e}")
-    # Eğer dosyalar bulunamazsa uygulamayı durdur
     sys.exit()
 
 
@@ -23,7 +21,7 @@ class UlkeKarakterTesti(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Hangi Ülke Karakterisin?")
-        self.geometry("600x600") # Görsel için pencere boyutu artırıldı
+        self.geometry("600x600")
         
         # Tkinter'ın çöp toplamasını engellemek için görsel referansını tutar
         self.flag_photo = None 
@@ -39,7 +37,35 @@ class UlkeKarakterTesti(tk.Tk):
             'wraplength': 400 
         }
         
-        self.reset_test()
+        # Uygulama başladığında karşılama ekranını göster.
+        self.gidis_ekrani_olustur() 
+
+    def gidis_ekrani_olustur(self):
+        """Uygulama başladığında karşılama ekranını ve Başla butonunu gösterir."""
+        
+        # Ekrandaki tüm eski bileşenleri temizle
+        for widget in self.winfo_children():
+            widget.destroy()
+            
+        aciklama = (
+            "Merhaba, gezgin! \n"
+            "Bu test, kişilik özelliklerine göre seni en çok yansıtan ülkeyi bulur.\n\n"
+            "Her soruda seni en iyi tanımlayan seçeneği seç.\n"
+            "Testin sonunda, kişiliğini temsil eden ülkeyi bulacaksın! \n\n"
+            "Hazırsan başlayalım!"
+        )
+        
+        tk.Label(self, text="🌍 Hangi Ülke Karakterisin? 🤔", font=('Arial', 18, 'bold')).pack(pady=40)
+        
+        # justify=tk.CENTER ile metni ortalarız
+        tk.Label(self, text=aciklama, wraplength=500, justify=tk.CENTER, font=('Arial', 12)).pack(pady=20, padx=20)
+        
+        # Başla butonu stili
+        tk.Button(self, text="Testi Başlat", bg="#FFFFFF", fg='black', 
+                  activebackground="#FFFFFF", activeforeground='black',
+                  font=('Arial', 14, 'bold'), width=20, height=2,
+                  command=self.reset_test).pack(pady=30)
+
 
     def hazirlik_yap(self, soru_havuzu):
         """
@@ -50,20 +76,19 @@ class UlkeKarakterTesti(tk.Tk):
             messagebox.showerror("Hata", "Soru havuzunda yeterli soru yok!")
             sys.exit()
 
-        # Rastgele 10 soru seç
         secilen_sorular = random.sample(soru_havuzu, SECILEN_SORU_SAYISI)
         hazir_test = []
         
         for soru_obj_original in secilen_sorular:
             soru_obj = copy.deepcopy(soru_obj_original)
             
-            # Sorular.py formatından listeleri çıkar
             original_siklar = list(soru_obj["secenekler"].keys())
             original_puanlar = list(soru_obj["secenekler"].values())
             
-            # Şıklar ve puanlar listesini birleştir, karıştır ve ayır
+            # Şıkları ve puanları eşleştirip karıştır
             birlesik_liste = list(zip(original_siklar, original_puanlar))
             random.shuffle(birlesik_liste)
+            # Karışmış listeyi tekrar ayır
             karismis_siklar, karismis_puanlar = zip(*birlesik_liste)
             
             hazir_test.append({
@@ -80,6 +105,7 @@ class UlkeKarakterTesti(tk.Tk):
         self.toplam_puan = 0
         self.test_sorulari = self.hazirlik_yap(TUM_SORULAR)
         
+        # Ekrandaki tüm eski bileşenleri temizle (Karşılama ekranı dahil)
         for widget in self.winfo_children():
             widget.destroy()
             
@@ -100,7 +126,6 @@ class UlkeKarakterTesti(tk.Tk):
              num_siklar = len(self.test_sorulari[0]["siklar"])
              
         for i in range(num_siklar):
-            # Beyaz/Siyah stil uygulandı
             btn = tk.Button(self.siklar_frame, text="", **self.BUTTON_STYLE, 
                             command=lambda i=i: self.cevap_secildi(i))
             btn.pack(pady=5)
@@ -167,11 +192,10 @@ class UlkeKarakterTesti(tk.Tk):
         tk.Label(self, text=f"Toplam Puanınız: {self.toplam_puan}", font=('Arial', 12)).pack(pady=5)
         tk.Label(self, text=aciklama, wraplength=550, font=('Arial', 10)).pack(pady=10, padx=10)
         
-        # Yeniden Başlat Butonu
-        tk.Button(self, text="Yeniden Başla", **self.BUTTON_STYLE, command=self.reset_test).pack(pady=20)
+        # Yeniden Başlat Butonu - Artık Karşılama Ekranına döner
+        tk.Button(self, text="Yeniden Başla", **self.BUTTON_STYLE, command=self.gidis_ekrani_olustur).pack(pady=20)
 
 
 if __name__ == "__main__":
     app = UlkeKarakterTesti()
-
     app.mainloop()
