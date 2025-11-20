@@ -3,11 +3,10 @@ from tkinter import messagebox
 import random
 import copy
 import sys
-# Görsel yükleme için Pillow kütüphanesi gerekli
 from PIL import Image, ImageTk 
 
 # --- Dosyaları Import Etme ---
-# DİKKAT: ulkeler.py ve sorular.py dosyaları bu dosya ile aynı klasörde olmalıdır.
+
 try:
     from ulkeler import ULKE_ARALIKLARI
     from sorular import TUM_SORULAR
@@ -174,4 +173,5 @@ class UlkeKarakterTesti(tk.Tk):
 
 if __name__ == "__main__":
     app = UlkeKarakterTesti()
+
     app.mainloop()
