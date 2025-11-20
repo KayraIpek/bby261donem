@@ -69,7 +69,7 @@ TUM_SORULAR = [
         "Tutkulu bir şekilde savunurum.": 4,
         "Sesi en çok çıkan ben olurum.": 5
     }},
-    {"soru": "Seyahat için ideal destinasyonun nedir?", "secenekler": {
+    {"soru": "Seyahat için ideal rotan nedir?", "secenekler": {
         "Kuzeyin sessiz doğası.": 1,
         "Tarihi ve düzenli şehirler.": 2,
         "Sanatın ve modanın başkentleri.": 3,
@@ -719,3 +719,4 @@ TUM_SORULAR = [
         "Asla ertelemem.": 5
     }}
 ]
+
