@@ -8,19 +8,19 @@ ULKE_ARALIKLARI = [
       "images/norvec.png"),
 
     (15, 19, "Japonya", "🇯🇵",
-      "Disiplinli, çalışkan ve detay odaklısın. Mükemmeliyetçilik damarlarında akıyor.",
+      "Disiplinli, çalışkan ve detay odaklısın. Mükemmeliyetçilik resmen damarlarında akıyor.",
       "images/japonya.png"),
 
     (20, 24, "Almanya", "🇩🇪",
-      "Planlı, sistematik ve güvenilir bir yapın var. Düzen senin için önemlidir.",
+      "Planlı, sistematik ve güvenilir bir yapın var. Düzen senin için her şeydir.",
       "images/almanya.png"),
 
     (25, 29, "Fransa", "🇫🇷",
-      "Bu zerafet... Bu şıklık... Sanat, estetik ve duygusallık yaşam tarzın.",
+      "Bu zerafet... Bu şıklık... Sanat, estetik ve duygusallık senin yaşam tarzın.",
       "images/fransa.png"),
 
     (30, 34, "Türkiye", "🇹🇷",
-      "Sıcakkanlı ve dayanıklısın. Aile ve sosyal bağlara çok değer verirsin.",
+      "Sıcakkanlı ve dayanıklısın. Aile ve sosyal bağlara çok değer veriyorsun.",
       "images/turkiye.png"),
 
     (35, 39, "İtalya", "🇮🇹",
@@ -32,7 +32,7 @@ ULKE_ARALIKLARI = [
       "images/hindistan.png"),
 
     (45, 49, "Rusya", "🇷🇺",
-      "Güçlü, duygusal derinliğe sahip ve dirençli birisin. Kararlılığınla tanınırsın.",
+      "Güçlü, duygusal derinliğe sahip ve dirençli birisin. Dışın sert için yumuşacık.",
       "images/rusya.png"),
 
     (50, 54, "Brezilya", "🇧🇷",
@@ -42,4 +42,5 @@ ULKE_ARALIKLARI = [
     (55, 60, "ABD", "🇺🇸",
       "Girişimci, özgüvenli ve fırsatları yakalamayı bilen birisin. Risk almaktan çekinmezsin.",
       "images/abd.png")
+
 ]
